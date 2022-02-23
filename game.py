@@ -21,7 +21,6 @@ class Game:
         print("Enter the code (" + "x" * len(self._code.get_code()) + "): ", end="")
         guess = input()
         valid = False
-        print(self._code.get_code())
         while not valid:
             if len(guess) != len(self._code.get_code()):
                 print("The code is " + str(len(self._code.get_code())) + " chars long: ", end="")
