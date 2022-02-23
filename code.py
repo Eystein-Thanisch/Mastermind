@@ -19,13 +19,17 @@ class Code:
     def get_feedback(self, s: str) -> str:
         lst: list[str] = list(s)
         feedback: str = ""
+        counted = set()
         for i in range(len(lst)):
             if lst[i] == self._code[i]:
                 feedback = feedback + " 2"
+                counted.add(i)
         for i in range(len(lst)):
-            if lst[i] != self._code[i] and lst[i] in self._code:
+            if lst[i] != self._code[i] and lst[i] in self._code and i not in counted:
                 feedback = feedback + " 1"
+                counted.add(i)
         for i in range(len(lst)):
-            if lst[i] not in [x for x in self._code]:
+            if lst[i] not in [x for x in self._code] and i not in counted:
                 feedback = feedback + " 0"
+                counted.add(i)
         return feedback[1:]
