@@ -1,14 +1,14 @@
 from random import choice
-
+from wordlist import Wordlist
 
 class Code:
     _code: tuple[str, ...]
 
-    def __init__(self, n: str, numeric: bool):
+    def __init__(self, n: str, numeric: bool, wl: Wordlist):
         if numeric:
             self._code: tuple[str, ...] = tuple(str(choice(range(0, 9))) for x in range(int(n)))
         else:
-            self._code: tuple[str, ...] = tuple(c for c in "word")
+            self._code: tuple[str, ...] = tuple(c for c in wl.get_random_word(int(n)))
 
     def get_code(self) -> str:
         return "".join((x for x in self._code))
