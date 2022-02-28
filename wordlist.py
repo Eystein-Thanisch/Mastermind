@@ -25,3 +25,6 @@ class Wordlist:
 
     def get_list_by_length(self, l: int) -> list[str]:
         return self._words[l]
+
+    def load_custom_dict(self, d: dict[int, list[str]]):
+        self._words = d
