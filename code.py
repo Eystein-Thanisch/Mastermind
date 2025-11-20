@@ -18,18 +18,17 @@ class Code:
 
     def get_feedback(self, s: str) -> str:
         lst: list[str] = list(s)
-        feedback: str = ""
-        counted = set()
+        feedback = []
+
         for i in range(len(lst)):
+
             if lst[i] == self._code[i]:
-                feedback = feedback + " 2"
-                counted.add(i)
-        for i in range(len(lst)):
-            if lst[i] != self._code[i] and lst[i] in self._code and i not in counted:
-                feedback = feedback + " 1"
-                counted.add(i)
-        for i in range(len(lst)):
-            if lst[i] not in [x for x in self._code] and i not in counted:
-                feedback = feedback + " 0"
-                counted.add(i)
-        return feedback[1:]
+                feedback.append(2)
+            elif lst[i] in self._code:
+                feedback.append(1)
+            else:
+                feedback.append(0)
+        
+        feedback.sort(reverse=True)
+
+        return " ".join([str(i) for i in feedback])
